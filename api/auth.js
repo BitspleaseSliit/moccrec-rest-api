@@ -101,4 +101,53 @@ router.get('/userDetails', passport.authenticate('jwt', { session: false}) ,func
 });
 
 
+router.get('/details/:id', function(req, res){
+    const userId = req.params.id;
+    User.findById(userId, function(err, user) {
+        if (err){
+            console.error(err);
+            res.sendStatus(500);
+        }
+        if (!user) {
+            return res.status(403).send({success: false, msg: 'User not found.'});
+        } else {
+            // var sendUser = {
+            //     _id : user._id,
+            //     email : user.email,
+            //     name : user.name,
+            //     type : user.type
+            // }
+            user.password = "NA"
+            res.json(user);
+        }
+    });
+  
+  });
+
+router.post('/update/:id', function(req, res, next) {
+
+    const userId = req.params.id;
+    User.findByIdAndUpdate(userId, {$push: {"learningStyles": req.body.learningStyles, "knowledgeLevel": req.body.knowledgeLevel}}).then(function(user){
+        res.json(user);
+    }).catch(function(err){
+        console.error(err);
+        res.sendStatus(500);
+    });
+
+});
+
+
+router.post('/delete/:id', function(req, res, next) {
+
+    const userId = req.params.id;
+    User.findByIdAndUpdate(userId, {$push: {"status": false}}).then(function(user){
+        res.json(user);
+    }).catch(function(err){
+        console.error(err);
+        res.sendStatus(500);
+    });
+
+});
+
+
 module.exports = router;

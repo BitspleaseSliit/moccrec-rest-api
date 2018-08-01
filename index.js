@@ -49,9 +49,9 @@ app.get('/', (req, res, next) => {
     res.send("Hello");
 });
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-app.use('/users',require('./api/authController'));
+
+app.use('/users',require('./api/auth'));
+app.use('/courses',require('./api/courses'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
