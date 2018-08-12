@@ -48,6 +48,9 @@ const CourseSchema = new Schema({
     },
     linguisticComplexity: {
         type: Number
+    },
+    courseScore: {
+        type: Number
     }
 });
 
