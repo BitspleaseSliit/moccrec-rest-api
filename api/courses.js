@@ -35,11 +35,11 @@ function getCoureScore(user, course){
         score += course.videoStyle.code;
         score += course.videoStyle.conversation;
         score += course.videoStyle.whiteboard;
-    }else if(user.learningStyles.reflective == 1){
-        score += course.videoStyle.code;
-        score += course.videoStyle.conversation;
-        score += course.videoStyle.whiteboard;
     }else if(user.learningStyles.sensing == 1){
+        score += course.videoStyle.code;
+        score += course.videoStyle.slide;
+        score += course.videoStyle.whiteboard;
+    }else if(user.learningStyles.reflective == 1){
         score += course.videoStyle.slide;
     }else if(user.learningStyles.intuitive == 1){
         score += course.videoStyle.talkingHead;
@@ -60,7 +60,7 @@ function getCoureScore(user, course){
         score += course.videoStyle.conversation;
         score += course.videoStyle.animation;
     }
-    score = (score / 240) * 100;
+    score = (score / 240) * 1000;
     console.log(course.name , score);
     return parseInt(score, 10);
 }
