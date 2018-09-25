@@ -19,6 +19,9 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
+  profilePic: {
+    type: String
+  },
   learningStyles: {
     active: {
       type: Number

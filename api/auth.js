@@ -129,7 +129,7 @@ router.get('/details/:id', function (req, res) {
 router.post('/update/:id', function (req, res, next) {
 
     const userId = req.params.id;
-    User.findByIdAndUpdate(userId, { $push: { "learningStyles": req.body.learningStyles, "knowledgeLevel": req.body.knowledgeLevel } }).then(function (user) {
+    User.findByIdAndUpdate(userId, req.body).then(function (user) {
         res.json(user);
     }).catch(function (err) {
         console.error(err);
